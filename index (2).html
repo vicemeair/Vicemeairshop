@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VICEMEAIR — Freestyle Scoot Merch</title>
+<meta name="description" content="VICEMEAIR — tee-shirts et stickers sérigraphiés en petite série pour le crew freestyle scoot.">
+<link rel="icon" type="image/png" href="assets/logo-badge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,700;0,900;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #0e0d12;
+    --ink-2: #17151d;
+    --bone: #f4f1ea;
+    --bone-dim: #c9c4d6;
+    --concrete: #7c7889;
+    --line: #322f3d;
+    --purple: #7c2adb;
+    --purple-dim: #4a1a8a;
+    --acid: #b4e600;
+    --acid-dim: #7fa300;
+    --radius: 2px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--ink);
+    color: var(--bone);
+    font-family: 'Archivo', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  img,svg{ max-width:100%; display:block; }
+
+  h1,h2,h3, .display{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    margin:0;
+  }
+  .mono{ font-family:'Space Mono', monospace; }
+
+  a{ color:inherit; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  ::selection{ background: var(--purple); color: var(--bone); }
+
+  :focus-visible{
+    outline: 2px solid var(--acid);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  .wrap{ max-width: 1180px; margin:0 auto; padding: 0 28px; }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position: sticky; top:0; z-index: 40;
+    background: rgba(22,20,15,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 28px;
+  }
+  .logo img{ height: 30px; display:block; }
+  nav{ display:flex; align-items:center; gap: 28px; }
+  nav a{
+    text-decoration:none; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--bone-dim); position:relative; padding: 4px 0;
+  }
+  nav a:hover{ color: var(--bone); }
+  .nav-links{ display:flex; gap:28px; }
+
+  .cart-btn{
+    background:none; border: 1px solid var(--line); color: var(--bone);
+    padding: 9px 14px; display:flex; align-items:center; gap:8px;
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    border-radius: var(--radius);
+    transition: border-color .15s ease;
+  }
+  .cart-btn:hover{ border-color: var(--bone-dim); }
+  .cart-count{
+    background: var(--purple); color: var(--bone); font-family:'Space Mono';
+    font-size: 11px; min-width: 18px; height:18px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; padding: 0 4px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    padding: 90px 28px 70px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-grid{
+    max-width: 1180px; margin:0 auto;
+    display:grid; grid-template-columns: 1.3fr 0.7fr; gap: 40px; align-items:center;
+  }
+  .eyebrow{
+    font-family:'Space Mono'; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--acid); margin-bottom: 18px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:''; width: 24px; height:1px; background: var(--acid); }
+  .hero h1{
+    font-size: clamp(52px, 9vw, 108px);
+    line-height: 0.92;
+    color: var(--bone);
+  }
+  .hero h1 span{ color: var(--purple); }
+  .hero p{
+    max-width: 440px; margin-top: 22px; color: var(--bone-dim); font-size: 16px;
+  }
+  .hero-ctas{ display:flex; gap:16px; margin-top: 32px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 14px 26px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+    border-radius: var(--radius); border: 1px solid transparent; transition: all .15s ease;
+  }
+  .btn-primary{ background: var(--purple); color: var(--bone); }
+  .btn-primary:hover{ background: var(--purple-dim); }
+  .btn-ghost{ border-color: var(--line); color: var(--bone); background:none; }
+  .btn-ghost:hover{ border-color: var(--bone-dim); }
+
+  .hero-glow{
+    position:absolute; width: 420px; height: 420px; border-radius: 50%;
+    filter: blur(70px); opacity: 0.35; z-index:0; pointer-events:none;
+  }
+  .hero-glow-purple{ background: var(--purple); top: -120px; left: -80px; }
+  .hero-glow-acid{ background: var(--acid); top: -60px; right: -100px; opacity: 0.22; }
+  .hero-grid{ position:relative; z-index:1; }
+
+  .hero-badge{
+    position:relative; max-width: 380px; margin: 0 auto;
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-12px); } }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{ padding: 90px 0; border-bottom: 1px solid var(--line); }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 48px; gap: 24px;
+    flex-wrap: wrap;
+  }
+  .section-head h2{ font-size: clamp(32px, 5vw, 52px); }
+  .section-head p{ color: var(--bone-dim); max-width: 360px; font-size: 14px; }
+  .tag-label{
+    font-family:'Space Mono'; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--concrete);
+  }
+
+  /* ---------- PRODUCT GRID ---------- */
+  .rack{
+    display:flex; align-items:center; gap: 6px; margin-bottom: 36px; color: var(--concrete);
+  }
+  .rack::before, .rack::after{ content:''; flex:1; border-top: 1px dashed var(--line); }
+  .rack-clip{ width:10px; height:10px; border:1px solid var(--concrete); border-radius:50%; }
+
+  .grid{
+    display:grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px;
+  }
+  .card{
+    background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--radius);
+    display:flex; flex-direction:column; position:relative;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .card:hover{ border-color: var(--bone-dim); transform: translateY(-4px); }
+  .card-tag{
+    position:absolute; top: -10px; left: 18px;
+    background: var(--acid); color: var(--ink); font-family:'Space Mono'; font-size: 11px;
+    padding: 3px 8px; letter-spacing: 0.05em; text-transform: uppercase; border-radius: 1px;
+  }
+  .card-art{
+    padding: 30px 30px 10px; display:flex; justify-content:center; align-items:center; height: 210px;
+  }
+  .card-body{ padding: 18px 22px 24px; border-top: 1px solid var(--line); }
+  .card-body h3{ font-size: 20px; }
+  .card-desc{ color: var(--bone-dim); font-size: 13px; margin-top: 6px; }
+  .card-price{ font-family:'Space Mono'; color: var(--acid); font-size: 15px; margin-top: 10px; }
+
+  .size-row{ display:flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+  .size-btn{
+    background:none; border: 1px solid var(--line); color: var(--bone-dim);
+    width: 38px; height: 34px; font-family:'Space Mono'; font-size: 12px; border-radius: var(--radius);
+    transition: all .12s ease;
+  }
+  .size-btn:hover{ border-color: var(--bone-dim); color: var(--bone); }
+  .size-btn.active{ background: var(--bone); color: var(--ink); border-color: var(--bone); }
+
+  .add-btn{
+    margin-top: 16px; width:100%; background: none; border: 1px solid var(--purple); color: var(--purple);
+    padding: 12px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: var(--radius);
+    transition: all .15s ease;
+  }
+  .add-btn:hover{ background: var(--purple); color: var(--bone); }
+  .add-btn.shake{ animation: shake .4s ease; border-color: var(--acid); color: var(--acid); }
+  @keyframes shake{
+    0%,100%{ transform: translateX(0); } 20%{ transform: translateX(-6px); } 40%{ transform: translateX(6px); }
+    60%{ transform: translateX(-4px); } 80%{ transform: translateX(4px); }
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; align-items:center; }
+  .about-grid p{ color: var(--bone-dim); margin-top: 16px; font-size: 15px; max-width: 520px; }
+  .about-grid p + p{ margin-top: 14px; }
+  .stitch{
+    border: 1px dashed var(--line); padding: 26px; font-family:'Space Mono'; font-size: 12px;
+    color: var(--concrete); line-height: 1.8;
+  }
+  .stitch b{ color: var(--bone-dim); }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding: 50px 28px 30px; }
+  .footer-inner{
+    max-width: 1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap: 20px;
+    color: var(--concrete); font-size: 13px;
+  }
+  .footer-inner a{ text-decoration:underline; text-underline-offset:3px; }
+
+  /* ---------- CART DRAWER ---------- */
+  .overlay{
+    position: fixed; inset:0; background: rgba(10,9,6,0.6);
+    opacity:0; pointer-events:none; transition: opacity .25s ease; z-index: 60;
+  }
+  .overlay.open{ opacity:1; pointer-events:auto; }
+
+  .drawer{
+    position: fixed; top:0; right:0; height:100%; width: min(430px, 100vw);
+    background: var(--ink-2); border-left: 1px solid var(--line);
+    transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1);
+    z-index: 61; display:flex; flex-direction:column;
+  }
+  .drawer.open{ transform: translateX(0); }
+
+  .drawer-head{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 22px 24px; border-bottom: 1px dashed var(--line);
+  }
+  .drawer-head h3{ font-size: 20px; }
+  .close-btn{
+    background:none; border:none; color: var(--bone-dim); font-size: 22px; line-height:1; padding: 4px;
+  }
+  .close-btn:hover{ color: var(--bone); }
+
+  .drawer-body{ flex:1; overflow-y:auto; padding: 20px 24px; }
+  .drawer-foot{ padding: 20px 24px; border-top: 1px dashed var(--line); }
+
+  .step{ display:none; }
+  .step.active{ display:block; }
+
+  .empty-cart{ text-align:center; padding: 60px 10px; color: var(--concrete); }
+  .empty-cart .glyph{ font-size: 34px; margin-bottom: 14px; }
+
+  .cart-item{
+    display:flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line);
+  }
+  .cart-item:last-child{ border-bottom:none; }
+  .ci-thumb{
+    width: 60px; height:60px; border-radius: var(--radius); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; background: var(--ink);
+  }
+  .ci-thumb svg{ width: 34px; }
+  .ci-info{ flex:1; }
+  .ci-name{ font-size: 14px; font-weight:700; }
+  .ci-meta{ font-family:'Space Mono'; font-size: 11px; color: var(--concrete); margin-top: 3px; }
+  .ci-row{ display:flex; align-items:center; justify-content:space-between; margin-top: 10px; }
+  .qty{ display:flex; align-items:center; gap: 10px; }
+  .qty button{
+    width: 22px; height:22px; background:none; border:1px solid var(--line); color: var(--bone);
+    border-radius: 50%; font-size: 13px; line-height:1; display:flex; align-items:center; justify-content:center;
+  }
+  .qty button:hover{ border-color: var(--bone-dim); }
+  .qty span{ font-family:'Space Mono'; font-size: 13px; min-width: 14px; text-align:center; }
+  .ci-price{ font-family:'Space Mono'; color: var(--acid); font-size: 13px; }
+  .ci-remove{ background:none; border:none; color: var(--concrete); font-size: 12px; text-decoration: underline; text-underline-offset:2px; }
+  .ci-remove:hover{ color: var(--purple); }
+
+  .totals-row{ display:flex; justify-content:space-between; font-size: 13px; color: var(--bone-dim); margin-bottom: 8px; }
+  .totals-row.grand{ color: var(--bone); font-size: 16px; font-family:'Space Mono'; margin-top: 12px; padding-top:12px; border-top: 1px dashed var(--line); }
+
+  .field{ margin-bottom: 14px; }
+  .field label{
+    display:block; font-family:'Space Mono'; font-size: 11px; letter-spacing:0.06em; text-transform: uppercase;
+    color: var(--concrete); margin-bottom: 6px;
+  }
+  .field input, .field select{
+    width:100%; background: var(--ink); border: 1px solid var(--line); color: var(--bone);
+    padding: 11px 12px; font-family:'Archivo'; font-size: 14px; border-radius: var(--radius);
+  }
+  .field input:focus, .field select:focus{ border-color: var(--acid); }
+  .field-row{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .field.error input{ border-color: var(--purple); }
+  .field-err{ font-size: 11px; color: var(--purple); margin-top: 5px; display:none; font-family:'Space Mono'; }
+  .field.error .field-err{ display:block; }
+
+  .back-link{ background:none; border:none; color: var(--bone-dim); font-size: 12px; letter-spacing:0.05em; text-transform:uppercase; margin-bottom: 18px; display:inline-flex; gap:6px; align-items:center; }
+  .back-link:hover{ color: var(--bone); }
+
+  .order-recap{ border: 1px dashed var(--line); padding: 16px; margin-bottom: 18px; font-family:'Space Mono'; font-size: 12px; color: var(--bone-dim); }
+  .order-recap div{ display:flex; justify-content:space-between; padding: 4px 0; }
+
+  .confirm-stamp{
+    width: 90px; height:90px; border: 2px solid var(--acid); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; margin: 0 auto 20px;
+    font-family:'Anton'; color: var(--acid); font-size: 12px; text-align:center; transform: rotate(-6deg);
+  }
+  .confirm-title{ text-align:center; font-size: 26px; }
+  .confirm-sub{ text-align:center; color: var(--bone-dim); font-size: 13px; margin-top: 10px; }
+  .order-id{ text-align:center; font-family:'Space Mono'; color: var(--acid); margin-top: 16px; font-size: 14px; }
+
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .hero-badge{ margin-top: 40px; max-width: 280px; }
+    .about-grid{ grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px){
+    .nav-links{ display:none; }
+    .header-inner{ padding: 14px 18px; }
+    .wrap{ padding: 0 18px; }
+    .hero{ padding: 60px 18px 50px; }
+    .field-row{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo"><img src="assets/logo-wordmark.png" alt="VICEMEAIR"></div>
+    <nav>
+      <div class="nav-links">
+        <a href="#collection">Collection</a>
+        <a href="#apropos">À propos</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="cart-btn" id="openCart" aria-label="Ouvrir le panier">
+        Panier <span class="cart-count mono" id="cartCount">0</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-glow hero-glow-purple" aria-hidden="true"></div>
+  <div class="hero-glow hero-glow-acid" aria-hidden="true"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Freestyle scoot · Petite série</div>
+      <h1>ASSUME<br>TON <span>VICE</span></h1>
+      <p>VICEMEAIR habille le crew : tee-shirts et stickers sérigraphiés en petites séries pour ceux qui vivent la rue, le skatepark et la rampe.</p>
+      <div class="hero-ctas">
+        <a href="#collection" class="btn btn-primary">Voir la collection</a>
+        <a href="#apropos" class="btn btn-ghost">Notre histoire</a>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <img src="assets/logo-badge.png" alt="Logo VICEMEAIR">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="collection">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="tag-label">Catalogue — 04 pièces</div>
+        <h2>La collection</h2>
+      </div>
+      <p>Choisis ta taille avant d'ajouter au panier. Coupe unisexe, tombé légèrement oversize.</p>
+    </div>
+
+    <div class="rack" aria-hidden="true">
+      <span class="rack-clip"></span><span class="rack-clip"></span><span class="rack-clip"></span>
+    </div>
+
+    <div class="grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="apropos">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="stitch">
+        <div><b>CREW</b> — Freestyle scoot</div>
+        <div><b>TIRAGE</b> — 50 à 120 ex. / modèle</div>
+        <div><b>ENCRE</b> — sérigraphie à l'eau</div>
+        <div><b>MATIÈRE</b> — coton 240g/m² / technique</div>
+        <div><b>DEPUIS</b> — 2023</div>
+      </div>
+      <div>
+        <div class="tag-label">Notre histoire</div>
+        <h2 style="margin-top:10px; font-size: clamp(28px,4vw,42px);">Né sur le bitume,<br>pas en usine.</h2>
+        <p>VICEMEAIR est une marque de scoot freestyle avant d'être une marque de vêtements. Le merch qu'on imprime finance le crew : les sessions, les vidéos, les déplacements sur les contests.</p>
+        <p>Chaque tee-shirt et chaque planche de stickers est tirée en petite série, à la main. Porter du VICEMEAIR, c'est afficher un vice qu'on assume : celui de rouler, de tenter le trick une fois de trop, et de recommencer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-inner">
+    <div>VICEMEAIR — © 2026. Tous droits réservés.</div>
+    <div><a href="mailto:contact@vicemeair.fr">contact@vicemeair.fr</a> — Livraison France &amp; Europe</div>
+  </div>
+</footer>
+
+<!-- ================= CART DRAWER ================= -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Panier">
+
+  <!-- STEP 1 : CART -->
+  <div class="step active" id="stepCart" style="display:flex; flex-direction:column; height:100%;">
+    <div class="drawer-head">
+      <h3>Ton panier</h3>
+      <button class="close-btn" id="closeCart1" aria-label="Fermer">&times;</button>
+    </div>
+    <div class="drawer-body" id="cartList"></div>
+    <div class="drawer-foot" id="cartFoot" style="display:none;">
+      <div class="totals-row"><span>Sous-total</span><span class="mono" id="subtotal">0,00 €</span></div>
+      <div class="totals-row"><span>Livraison</span><span class="mono">4,90 €</span></div>
+      <div class="totals-row grand"><span>Total</span><span id="total">0,00 €</span></div>
+      <button class="btn btn-primary" style="width:100%; justify-content:center; margin-top:16px;" id="goCheckout">Passer commande</button>
+    </div>
+  </div>
+
+  <!-- STEP 2 : CHECKOUT -->
+  <div class="step" id="stepCheckout" style="display:none; flex-direction:column; height:100%;">
+    <div class="drawer-head">
+      <h3>Livraison</h3>
+      <button class="close-btn" id="closeCart2" aria-label="Fermer">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <button class="back-link" id="backToCart">&larr; Retour au panier</button>
+      <form id="checkoutForm" novalidate>
+        <div class="field-row">
+          <div class="field" data-field="prenom">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" autocomplete="given-name">
+            <div class="field-err">Champ requis</div>
+          </div>
+          <div class="field" data-field="nom">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" autocomplete="family-name">
+            <div class="field-err">Champ requis</div>
+          </div>
+        </div>
+        <div class="field" data-field="email">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" autocomplete="email">
+          <div class="field-err">E-mail invalide</div>
+        </div>
+        <div class="field" data-field="tel">
+          <label for="tel">Téléphone</label>
+          <input type="tel" id="tel" autocomplete="tel">
+          <div class="field-err">Champ requis</div>
+        </div>
+        <div class="field" data-field="adresse">
+          <label for="adresse">Adresse</label>
+          <input type="text" id="adresse" placeholder="N° et nom de rue" autocomplete="address-line1">
+          <div class="field-err">Champ requis</div>
+        </div>
+        <div class="field">
+          <label for="complement">Complément (optionnel)</label>
+          <input type="text" id="complement" placeholder="Bâtiment, étage, code…" autocomplete="address-line2">
+        </div>
+        <div class="field-row">
+          <div class="field" data-field="cp">
+            <label for="cp">Code postal</label>
+            <input type="text" id="cp" autocomplete="postal-code">
+            <div class="field-err">Champ requis</div>
+          </div>
+          <div class="field" data-field="ville">
+            <label for="ville">Ville</label>
+            <input type="text" id="ville" autocomplete="address-level2">
+            <div class="field-err">Champ requis</div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="pays">Pays</label>
+          <select id="pays" autocomplete="country-name">
+            <option>France</option>
+            <option>Belgique</option>
+            <option>Suisse</option>
+            <option>Luxembourg</option>
+            <option>Canada</option>
+            <option>Autre</option>
+          </select>
+        </div>
+      </form>
+
+      <div class="order-recap" id="checkoutRecap"></div>
+    </div>
+    <div class="drawer-foot">
+      <div class="field-err" id="submitError" style="display:none; margin-bottom:10px; font-size:12px;">Une erreur est survenue. Vérifie ta connexion et réessaie.</div>
+      <button class="btn btn-primary" style="width:100%; justify-content:center;" id="submitOrder">Valider la commande</button>
+    </div>
+  </div>
+
+  <!-- STEP 3 : CONFIRMATION -->
+  <div class="step" id="stepConfirm" style="display:none; flex-direction:column; height:100%;">
+    <div class="drawer-head">
+      <h3>Commande confirmée</h3>
+      <button class="close-btn" id="closeCart3" aria-label="Fermer">&times;</button>
+    </div>
+    <div class="drawer-body" style="padding-top:30px;">
+      <div class="confirm-stamp">VALIDÉ</div>
+      <div class="confirm-title">Merci !</div>
+      <div class="confirm-sub">Ta commande a bien été transmise à l'atelier. Tu recevras un e-mail de confirmation sous peu.</div>
+      <div class="order-id" id="orderIdDisplay"></div>
+    </div>
+    <div class="drawer-foot">
+      <button class="btn btn-ghost" style="width:100%; justify-content:center;" id="closeConfirm">Continuer mes achats</button>
+    </div>
+  </div>
+
+</aside>
+
+<script>
+(function(){
+  "use strict";
+
+  // ======= CONFIGURATION =======
+  // Colle ici l'URL de ton formulaire Formspree (ex: "https://formspree.io/f/xxxxxxxx").
+  // Tu la trouves dans ton tableau de bord Formspree, sur la page du formulaire.
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjgnjglv";
+
+  // ======= DONNÉES PRODUITS =======
+  const SIZES = ["S","M","L","XL"];
+
+  function teeArt(color, stampColor, stampShape, texture){
+    const shapes = {
+      cross: `<line x1="34" y1="34" x2="66" y2="66" stroke="${stampColor}" stroke-width="6" stroke-linecap="round"/>
+              <line x1="66" y1="34" x2="34" y2="66" stroke="${stampColor}" stroke-width="6" stroke-linecap="round"/>`,
+      circle: `<circle cx="50" cy="50" r="16" fill="none" stroke="${stampColor}" stroke-width="6"/>`,
+      vm: `<text x="50" y="58" font-family="Anton" font-size="26" fill="${stampColor}" text-anchor="middle">VM</text>`,
+      bolt: `<path d="M56 30 L38 58 L50 58 L44 78 L66 46 L52 46 Z" fill="${stampColor}"/>`
+    };
+    // Texture "sport" : légère trame de mailles pour distinguer la matière technique du coton.
+    const mesh = texture === "sport" ? `
+      <g opacity="0.35">
+        ${Array.from({length:9}).map((_,r) =>
+          Array.from({length:5}).map((__,c) =>
+            `<circle cx="${34 + c*16}" cy="${28 + r*13}" r="1.4" fill="${stampColor}"/>`
+          ).join("")
+        ).join("")}
+      </g>` : "";
+    return `
+    <svg viewBox="0 0 160 170" width="150">
+      <path d="M40 10 L20 28 L8 46 L26 58 L34 50 L34 150 Q34 156 40 156 L120 156 Q126 156 126 150 L126 50 L134 58 L152 46 L140 28 L120 10
+               Q112 20 80 20 Q48 20 40 10 Z"
+            fill="${color}" stroke="#0000001a" stroke-width="1.5"/>
+      <clipPath id="clip-${color.replace('#','')}-${stampShape}"><path d="M34 20 L126 20 L126 150 L34 150 Z"/></clipPath>
+      <g clip-path="url(#clip-${color.replace('#','')}-${stampShape})">${mesh}</g>
+      <g transform="translate(30,45)">${shapes[stampShape]}</g>
+    </svg>`;
+  }
+
+  function stickerArt(){
+    return `
+    <svg viewBox="0 0 160 170" width="140">
+      <path d="M22 20 H118 L138 40 V150 H22 Z" fill="#f1ece1" stroke="#00000022" stroke-width="1.5"/>
+      <path d="M118 20 L118 40 L138 40 Z" fill="#cfc8b8"/>
+      <circle cx="80" cy="90" r="34" fill="none" stroke="#7c2adb" stroke-width="5"/>
+      <text x="80" y="97" font-family="Anton" font-size="20" fill="#7c2adb" text-anchor="middle">VM</text>
+      <line x1="40" y1="140" x2="120" y2="140" stroke="#7d7768" stroke-width="2" stroke-dasharray="4 4"/>
+    </svg>`;
+  }
+
+  const PRODUCTS = [
+    { id:"sport-noir", name:"Tee Shirt Sport Noir", desc:"Matière technique respirante, coupe active", price:36, color:"#111111", stampColor:"#b4e600", shape:"bolt", texture:"sport", hasSizes:true, badge:"Best-seller" },
+    { id:"sport-blanc", name:"Tee Shirt Sport Blanc", desc:"Matière technique respirante, coupe active", price:36, color:"#eee9dd", stampColor:"#7c2adb", shape:"bolt", texture:"sport", hasSizes:true, badge:"Nouveau" },
+    { id:"coton-blanc", name:"Tee Shirt Coton Blanc", desc:"Coton épais 240g/m², tampon encre violette", price:32, color:"#eee9dd", stampColor:"#7c2adb", shape:"circle", texture:"coton", hasSizes:true, badge:null },
+    { id:"coton-noir", name:"Tee Shirt Coton Noir", desc:"Coton épais 240g/m², monogramme VM vert acide", price:32, color:"#111111", stampColor:"#b4e600", shape:"vm", texture:"coton", hasSizes:true, badge:null },
+    { id:"autocollants", name:"Autocollants", desc:"Planche de 5 stickers vinyle résistants", price:8, color:null, stampColor:null, shape:null, texture:null, hasSizes:false, badge:"Petit prix" }
+  ];
+
+  // ======= ÉTAT =======
+  let cart = []; // { productId, size, qty }
+  let selectedSizes = {}; // productId -> size en cours de sélection sur la carte
+
+  // ======= RENDU DU CATALOGUE =======
+  const grid = document.getElementById("productGrid");
+  PRODUCTS.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "card";
+    const art = p.hasSizes ? teeArt(p.color, p.stampColor, p.shape, p.texture) : stickerArt();
+    card.innerHTML = `
+      ${p.badge ? `<div class="card-tag">${p.badge}</div>` : ""}
+      <div class="card-art">${art}</div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <div class="card-desc">${p.desc}</div>
+        <div class="card-price mono">${p.price.toFixed(2).replace(".",",")} €</div>
+        ${p.hasSizes ? `
+        <div class="size-row" data-product="${p.id}">
+          ${SIZES.map(s => `<button class="size-btn" data-size="${s}">${s}</button>`).join("")}
+        </div>` : ""}
+        <button class="add-btn" data-product="${p.id}">Ajouter au panier</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // Sélection de taille
+  grid.addEventListener("click", (e) => {
+    const sizeBtn = e.target.closest(".size-btn");
+    if(sizeBtn){
+      const row = sizeBtn.closest(".size-row");
+      const productId = row.dataset.product;
+      row.querySelectorAll(".size-btn").forEach(b => b.classList.remove("active"));
+      sizeBtn.classList.add("active");
+      selectedSizes[productId] = sizeBtn.dataset.size;
+      const addBtn = row.parentElement.querySelector(".add-btn");
+      addBtn.classList.remove("shake");
+      return;
+    }
+    const addBtn = e.target.closest(".add-btn");
+    if(addBtn){
+      const productId = addBtn.dataset.product;
+      const p = productById(productId);
+      if(p.hasSizes){
+        const size = selectedSizes[productId];
+        if(!size){
+          addBtn.textContent = "Choisis une taille ↑";
+          addBtn.classList.add("shake");
+          setTimeout(() => { addBtn.textContent = "Ajouter au panier"; }, 1400);
+          return;
+        }
+        addToCart(productId, size);
+      } else {
+        addToCart(productId, null);
+      }
+      addBtn.textContent = "Ajouté ✓";
+      setTimeout(() => { addBtn.textContent = "Ajouter au panier"; }, 1000);
+    }
+  });
+
+  function addToCart(productId, size){
+    const existing = cart.find(i => i.productId === productId && i.size === size);
+    if(existing){ existing.qty += 1; }
+    else { cart.push({ productId, size, qty: 1 }); }
+    renderCart();
+    openDrawer();
+  }
+
+  // ======= PANIER =======
+  const cartCountEl = document.getElementById("cartCount");
+  const cartListEl = document.getElementById("cartList");
+  const cartFootEl = document.getElementById("cartFoot");
+  const subtotalEl = document.getElementById("subtotal");
+  const totalEl = document.getElementById("total");
+  const SHIPPING = 4.90;
+
+  function productById(id){ return PRODUCTS.find(p => p.id === id); }
+
+  function renderCart(){
+    const totalQty = cart.reduce((n,i) => n + i.qty, 0);
+    cartCountEl.textContent = totalQty;
+
+    if(cart.length === 0){
+      cartListEl.innerHTML = `<div class="empty-cart"><div class="glyph">◌</div>Ton panier est vide.<br>Ajoute une pièce de la collection.</div>`;
+      cartFootEl.style.display = "none";
+      return;
+    }
+    cartFootEl.style.display = "block";
+
+    cartListEl.innerHTML = cart.map((item, idx) => {
+      const p = productById(item.productId);
+      const thumb = p.hasSizes ? teeArt(p.color, p.stampColor, p.shape, p.texture) : stickerArt();
+      return `
+      <div class="cart-item">
+        <div class="ci-thumb">${thumb}</div>
+        <div class="ci-info">
+          <div class="ci-name">${p.name}</div>
+          ${p.hasSizes ? `<div class="ci-meta">TAILLE ${item.size}</div>` : ""}
+          <div class="ci-row">
+            <div class="qty">
+              <button data-act="dec" data-idx="${idx}" aria-label="Diminuer la quantité">−</button>
+              <span>${item.qty}</span>
+              <button data-act="inc" data-idx="${idx}" aria-label="Augmenter la quantité">+</button>
+            </div>
+            <div class="ci-price mono">${(p.price*item.qty).toFixed(2).replace(".",",")} €</div>
+          </div>
+          <button class="ci-remove" data-act="rm" data-idx="${idx}">Retirer</button>
+        </div>
+      </div>`;
+    }).join("");
+
+    const subtotal = cart.reduce((sum,i) => sum + productById(i.productId).price * i.qty, 0);
+    subtotalEl.textContent = subtotal.toFixed(2).replace(".",",") + " €";
+    totalEl.textContent = (subtotal + SHIPPING).toFixed(2).replace(".",",") + " €";
+  }
+
+  cartListEl.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-act]");
+    if(!btn) return;
+    const idx = parseInt(btn.dataset.idx, 10);
+    const act = btn.dataset.act;
+    if(act === "inc") cart[idx].qty += 1;
+    if(act === "dec") { cart[idx].qty -= 1; if(cart[idx].qty <= 0) cart.splice(idx,1); }
+    if(act === "rm") cart.splice(idx,1);
+    renderCart();
+  });
+
+  // ======= DRAWER : OUVERTURE / FERMETURE / ÉTAPES =======
+  const overlay = document.getElementById("overlay");
+  const drawer = document.getElementById("drawer");
+  const stepCart = document.getElementById("stepCart");
+  const stepCheckout = document.getElementById("stepCheckout");
+  const stepConfirm = document.getElementById("stepConfirm");
+
+  function openDrawer(){ overlay.classList.add("open"); drawer.classList.add("open"); }
+  function closeDrawer(){ overlay.classList.remove("open"); drawer.classList.remove("open"); }
+  function showStep(step){
+    [stepCart, stepCheckout, stepConfirm].forEach(s => { s.style.display = "none"; });
+    step.style.display = "flex";
+  }
+
+  document.getElementById("openCart").addEventListener("click", () => { renderCart(); showStep(stepCart); openDrawer(); });
+  document.getElementById("closeCart1").addEventListener("click", closeDrawer);
+  document.getElementById("closeCart2").addEventListener("click", closeDrawer);
+  document.getElementById("closeCart3").addEventListener("click", closeDrawer);
+  document.getElementById("closeConfirm").addEventListener("click", closeDrawer);
+  overlay.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeDrawer(); });
+
+  document.getElementById("goCheckout").addEventListener("click", () => {
+    if(cart.length === 0) return;
+    renderCheckoutRecap();
+    showStep(stepCheckout);
+  });
+  document.getElementById("backToCart").addEventListener("click", () => showStep(stepCart));
+
+  // ======= RÉCAP DANS LE CHECKOUT =======
+  function renderCheckoutRecap(){
+    const subtotal = cart.reduce((sum,i) => sum + productById(i.productId).price * i.qty, 0);
+    const total = subtotal + SHIPPING;
+    document.getElementById("checkoutRecap").innerHTML =
+      cart.map(i => {
+        const p = productById(i.productId);
+        const label = p.hasSizes ? `${p.name} (${i.size}) x${i.qty}` : `${p.name} x${i.qty}`;
+        return `<div><span>${label}</span><span>${(p.price*i.qty).toFixed(2).replace(".",",")} €</span></div>`;
+      }).join("") +
+      `<div style="border-top:1px dashed var(--line); margin-top:8px; padding-top:8px;"><span>Total (livraison incl.)</span><span>${total.toFixed(2).replace(".",",")} €</span></div>`;
+  }
+
+  // ======= VALIDATION + ENVOI DE COMMANDE =======
+  const fields = ["prenom","nom","email","tel","adresse","cp","ville"];
+
+  function setError(name, hasError){
+    const el = document.querySelector(`[data-field="${name}"]`);
+    if(!el) return;
+    el.classList.toggle("error", hasError);
+  }
+
+  function validate(){
+    let valid = true;
+    fields.forEach(name => {
+      const input = document.getElementById(name);
+      const value = input.value.trim();
+      let bad = value.length === 0;
+      if(name === "email" && value.length){
+        bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      }
+      setError(name, bad);
+      if(bad) valid = false;
+    });
+    return valid;
+  }
+
+  fields.forEach(name => {
+    document.getElementById(name).addEventListener("input", () => setError(name, false));
+  });
+
+  function generateOrderId(){
+    const rnd = Math.floor(1000 + Math.random()*9000);
+    const date = new Date();
+    return `VM-${date.getFullYear()}${String(date.getMonth()+1).padStart(2,"0")}${String(date.getDate()).padStart(2,"0")}-${rnd}`;
+  }
+
+  const submitBtn = document.getElementById("submitOrder");
+  const submitErrorEl = document.getElementById("submitError");
+
+  submitBtn.addEventListener("click", async () => {
+    if(cart.length === 0) return;
+    if(!validate()){
+      document.querySelector(".field.error input")?.focus();
+      return;
+    }
+
+    submitErrorEl.style.display = "none";
+
+    const orderId = generateOrderId();
+    const subtotal = cart.reduce((sum,i) => sum + productById(i.productId).price * i.qty, 0);
+    const total = subtotal + SHIPPING;
+
+    const customer = {
+      prenom: document.getElementById("prenom").value.trim(),
+      nom: document.getElementById("nom").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      tel: document.getElementById("tel").value.trim(),
+      adresse: document.getElementById("adresse").value.trim(),
+      complement: document.getElementById("complement").value.trim(),
+      cp: document.getElementById("cp").value.trim(),
+      ville: document.getElementById("ville").value.trim(),
+      pays: document.getElementById("pays").value
+    };
+
+    // Construction du récapitulatif texte de la commande
+    const lines = cart.map(i => {
+      const p = productById(i.productId);
+      const sizeLabel = p.hasSizes ? ` | Taille ${i.size}` : "";
+      return `- ${p.name}${sizeLabel} | x${i.qty} | ${(p.price*i.qty).toFixed(2)} €`;
+    });
+
+    const articlesText = lines.join("\n");
+    const adresseComplete = `${customer.adresse}${customer.complement ? " — " + customer.complement : ""}, ${customer.cp} ${customer.ville}, ${customer.pays}`;
+
+    // Champs envoyés à Formspree. "_subject" personnalise l'objet du mail reçu.
+    const payload = {
+      _subject: `Commande VICEMEAIR ${orderId}`,
+      reference_commande: orderId,
+      prenom: customer.prenom,
+      nom: customer.nom,
+      email: customer.email,
+      telephone: customer.tel,
+      adresse_livraison: adresseComplete,
+      articles: articlesText,
+      sous_total: subtotal.toFixed(2) + " €",
+      livraison: SHIPPING.toFixed(2) + " €",
+      total: total.toFixed(2) + " €"
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Envoi en cours…";
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if(!res.ok){ throw new Error("Réponse Formspree non valide"); }
+
+      document.getElementById("orderIdDisplay").textContent = "Référence : " + orderId;
+      showStep(stepConfirm);
+
+      // Réinitialisation du panier après commande réussie
+      cart = [];
+      renderCart();
+      document.getElementById("checkoutForm").reset();
+    } catch (err) {
+      submitErrorEl.style.display = "block";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Valider la commande";
+    }
+  });
+
+  renderCart();
+})();
+</script>
+
+</body>
+</html>
